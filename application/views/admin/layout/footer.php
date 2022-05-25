@@ -1,3 +1,9 @@
+<!-- utuk CKEDITOR-->
+<script>
+  initSample();
+</script>
+
+
 </div>
             <!-- /.box-body -->
           </div>

@@ -37,7 +37,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('admin/user') ?>"><i class="fa fa-table"></i> Data Pengguna</a></li>
-            <li><a href="<?php echo base_url('admin/tambah') ?>"><i class="fa fa-plus"></i> Tambah Pengguna</a></li>
+            <li><a href="<?php echo base_url('admin/user/tambah') ?>"><i class="fa fa-plus"></i> Tambah Pengguna</a></li>
           </ul>
         </li>
         
