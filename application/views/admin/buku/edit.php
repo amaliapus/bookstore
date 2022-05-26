@@ -8,61 +8,98 @@ echo form_open(base_url('admin/buku/edit/' .$buku->id_buku),' class="form-horizo
 
 <div class="form-group">
    <label class="col-md-2 control-label">Judul Buku</label>
-         <div class="col-md-5">
-         <input type="text" name="judul_buku" class="form-control" placeholder="Judul Buku" value="<?php echo $buku->judul_buku ?>" required>
+      <div class="col-md-5">
+      <input type="text" name="judul_buku" class="form-control" placeholder="Judul Buku" value="<?php echo $buku->judul_buku ?>" required>
       </div>
  </div>
 
  <div class="form-group">
    <label class="col-md-2 control-label">Penulis</label>
-         <div class="col-md-5">
-         <input type="text" name="penulis" class="form-control" placeholder="Penulis" value="<?php echo $buku->penulis ?>" required>
+      <div class="col-md-5">
+      <input type="text" name="penulis" class="form-control" placeholder="Penulis" value="<?php echo $buku->penulis ?>" required>
       </div>
  </div>
 
  <div class="form-group">
    <label class="col-md-2 control-label">Penerbit</label>
-         <div class="col-md-5">
-         <input type="text" name="penerbit" class="form-control" placeholder="Penerbit" value="<?php echo $buku->penerbit ?>" required>
+      <div class="col-md-5">
+      <input type="text" name="penerbit" class="form-control" placeholder="Penerbit" value="<?php echo $buku->penerbit ?>" required>
+      </div>
+ </div>
+
+<div class="form-group row">
+<label class="col-md-2 control-label">Kategori</label>
+<div class="col-md-5">
+  <select name="id_kategori" class="form-control">
+    <?php foreach($kategori as $kategori) { ?>
+       <option value= "<?php echo $kategori->nama_kategori ?>" <?php if($buku->id_kategori==$kategori->id_kategori) { echo "selected"; } ?>>
+          <?php echo $kategori->nama_kategori ?>
+       </option>
+    <?php } ?>
+ </select>
+</div>
+</div>
+
+<div class="form-group">
+   <label class="col-md-2 control-label">Harga</label>
+      <div class="col-md-5">
+      <input type="number" name="harga" class="form-control" placeholder="Harga" value="<?php echo $buku->harga ?>" required>
       </div>
  </div>
 
 <div class="form-group">
    <label class="col-md-2 control-label">Stock</label>
-         <div class="col-md-5">
-         <input type="number" name="stock" class="form-control" placeholder="Stock" value="<?php echo $buku->stock ?>" required>
+      <div class="col-md-5">
+      <input type="number" name="stock" class="form-control" placeholder="Stock" value="<?php echo $buku->stock ?>" required>
       </div>
  </div>
 
  <div class="form-group">
-   <label class="col-md-2 control-label">Status (UnStock, OutofStock, StockatPublisherWarehouse)</label>
-         <div class="col-md-5">
-         <input type="text" name="status_buku" class="form-control" placeholder="Status" value="<?php echo $buku->status_buku ?>" required>
+   <label class="col-md-2 control-label">Berat</label>
+      <div class="col-md-5">
+      <input type="text" name="berat" class="form-control" placeholder="Berat" value="<?php echo $buku->berat ?>" required>
       </div>
  </div>
 
-<!--   <div class="form-group">
-   <label class="col-md-2 control-label">Kategori</label>
-         <div class="col-md-5">
-         <select name="akses_level" class="form-control">
-            <option values="Admin">Admin</option>
-            <option values="Buku">Buku <?php if($buku->akses_level=="Buku") { echo "selected"; } ?>>Buku</option>
-         </select>
+ <div class="form-group">
+   <label class="col-md-2 control-label">Ukuran</label>
+      <div class="col-md-5">
+      <input type="text" name="ukuran" class="form-control" placeholder="Ukuran" value="<?php echo $buku->ukuran ?>" required>
       </div>
- </div> -->
+ </div>
+
+ <div class="form-group">
+  <label class="col-md-2 control-label">Keterangan</label>
+  <div class="col-md-10">
+    <textarea name="keterangan" id="editor" class="form-control" placeholder="Keterangan" ><?php echo $buku->keterangan ?></textarea>
+  </div>
+</div>
 
 <div class="form-group">
-   <label class="col-md-2 control-label">Kategori</label>
-         <div class="col-md-5">
-         <select name="id_kategori" class="form-control">
-            <?php foreach($kategori as $kategori) { ?>
-            <option value="<?php echo $kategori->id_kategori ?>" >
-              <?php echo $kategori->nama_kategori ?>
-            </option>
-          <?php } ?>
+  <label class="col-md-2 control-label">Keywords (untuk SEO Google)</label>
+  <div class="col-md-10">
+    <textarea name="keywords" class="form-control" placeholder="Keywords"><?php echo $buku->keywords ?></textarea>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-2 control-label">Upload Gambar Buku</label>
+  <div class="col-md-10">
+    <input type="file" name="gambar" class="form-control" >
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-2 control-label">Status Buku</label>
+  <div class="col-md-10">
+    <select name="status_buku" class="form_control">
+      <option value="In Stock">In Stock</option>
+      <option value="Out of Stock">Out of Stock</option>
+      <option value="Stock at Publisher Warehouse" <?php if($buku->status_buku="Stock at Publisher House") { echo "selected"; } ?> >Stock at Publisher Warehouse</option>
+      option
     </select>
-      </div>
- </div> 
+  </div>
+</div>
 
 <div class="form-group">
   <label class="col-md-2 control-label"></label>

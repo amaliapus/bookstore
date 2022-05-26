@@ -9,7 +9,7 @@ if(isset($error)) {
 // Notifikasi error
 echo validation_errors('<div class="alert alert-warning">', '</div>');
 
-// Form open
+// Form open pakai MULTIPART untuk form yang ada upload GAMBAR
 echo form_open_multipart(base_url('admin/buku/tambah'), ' class="form-horizontal"');
  ?>
 
@@ -107,9 +107,9 @@ echo form_open_multipart(base_url('admin/buku/tambah'), ' class="form-horizontal
   <label class="col-md-2 control-label">Status Buku</label>
   <div class="col-md-10">
     <select name="status_buku" class="form_control">
-      <option value="InStock">In Stock</option>
-      <option value="OutofStock">Out of Stock</option>
-      <option value="StockatPublisherWarehouse">Stock at Publisher Warehouse</option>
+      <option value="In Stock">In Stock</option>
+      <option value="Out of Stock">Out of Stock</option>
+      <option value="Stock at Publisher Warehouse">Stock at Publisher Warehouse</option>
       option
     </select>
   </div>

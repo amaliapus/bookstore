@@ -14,6 +14,7 @@ class Buku_model extends CI_Model {
 	{
 		$this->db->select('buku.*,
 							user.nama,
+							kategori.id_kategori,
 							kategori.nama_kategori,
 							kategori.slug_kategori');
 		$this->db->from('buku');
