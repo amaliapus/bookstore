@@ -3,7 +3,7 @@
 echo validation_errors('<div class="alert alert-warning">','</div>');
 
 // Form open
-echo form_open(base_url('admin/buku/edit/' .$buku->id_buku),' class="form-horizontal"');
+echo form_open_multipart(base_url('admin/buku/edit/' .$buku->id_buku),' class="form-horizontal"');
 ?>
 
 <div class="form-group">
@@ -26,6 +26,13 @@ echo form_open(base_url('admin/buku/edit/' .$buku->id_buku),' class="form-horizo
       <input type="text" name="penerbit" class="form-control" placeholder="Penerbit" value="<?php echo $buku->penerbit ?>" required>
       </div>
  </div>
+
+ <div class="form-group">
+  <label class="col-md-2 control-label">Kode Buku</label>
+  <div class="col-md-5">
+    <input type="text" name="kode_buku" class="form-control"  placeholder="Kode" value="<?php echo $buku->kode_buku ?>" required>
+  </div>
+</div>
 
 <div class="form-group row">
 <label class="col-md-2 control-label">Kategori</label>

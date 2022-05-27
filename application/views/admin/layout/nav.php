@@ -14,7 +14,7 @@
         <!-- MENU BUKU -->
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-sitemap"></i> <span>BUKU</span>
+            <i class="fa fa-book"></i> <span>BUKU</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

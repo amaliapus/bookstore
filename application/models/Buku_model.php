@@ -38,22 +38,27 @@ class Buku_model extends CI_Model {
 		return $query->row();
 	}
 
-	// Login buku
-	public function login($username,$password)
+	// Gambar
+	public function gambar($id_buku)
 	{
 		$this->db->select('*');
 		$this->db->from('buku');
-		$this->db->where(array( 'username'	=> $username,
-								'password'	=>	SHA1($password)));
+		$this->db->where('id_buku', $id_buku);
 		$this->db->order_by('id_buku', 'desc');
 		$query = $this->db->get();
-		return $query->row();
+		return $query->result();
 	}
 
 	// Tambah
 	public function tambah($data)
 	{
 		$this->db->insert('buku', $data);
+	}
+
+	// Tambah gambar
+	public function tambah_gambar($data)
+	{
+		$this->db->insert('gambar', $data);
 	}
 
 	// Edit

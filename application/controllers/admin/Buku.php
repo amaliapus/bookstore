@@ -26,6 +26,78 @@ class Buku extends CI_Controller {
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
 
+	// Gambar
+	public function gambar($id_buku)
+	{
+		$buku = $this->buku_model->detail($id_buku);
+		$gambar = $this->buku_model->gambar($id_buku);
+
+		// Validasi input
+		$valid = $this->form_validation;
+
+		$valid->set_rules('judul_gambar','Judul/Nama Gambar','required',
+			array('required' => '%s harus diisi'));
+
+		if($valid->run()) {
+			$config['upload_path']		= './assets/upload/image';
+			$config['allowed_types'] 	= 'gif|jpg|png|JPG|jpeg';
+			$config['max_size']  		= '5000';  // Dalam kb
+			$config['max_width']  		= '5000';
+			$config['max_height']  		= '5000';
+			
+			$this->load->library('upload', $config);
+				
+			if ( ! $this->upload->do_upload('gambar')){
+			// End validasi
+
+			$data = array(	'title' 	=> 'Tambah Gambar Buku: ' .$buku->judul_buku,
+							'buku'  	=> $buku,
+							'gambar'  	=> $gambar,
+							'error'  	=> $this->upload->display_errors(),
+						  	'isi'	  	=> 'admin/buku/gambar'
+						  );
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
+			// Masuk database
+		}else{
+			$upload_gambar = array('upload_data' => $this->upload->data());
+
+			// Create thumbnail gambar
+			$config['image_library']	= 'gd2';
+			$config['source_image'] 	= './assets/upload/image'.$upload_gambar['upload_data']['file_name'];
+			// Lokasi folder thumbnail
+			$config['new_image']		= './assets/upload/image/thumbs';
+			$config['create_thumb'] 	= TRUE;
+			$config['maintain_ratio'] 	= TRUE;
+			$config['width']         	= 250; // Pixel
+			$config['height']       	= 250; // Pixel
+			$config['thumb_marker']		= '';
+
+			$this->load->library('image_lib', $config);
+
+			$this->image_lib->resize();
+			// End create thumbnail gambar
+
+			$i = $this->input;
+
+
+			$data = array(	'id_buku'  			=> $id_buku,
+							'judul_gambar'  	=> $i->post('judul_gambar'),
+							// Disimpan judul file gambar
+							'gambar' 			=> $upload_gambar['upload_data']['file_name']
+									);
+
+			$this->buku_model->tambah_gambar($data);
+			$this->session->set_flashdata('sukses', 'Data gambar telah ditambah');
+			redirect(base_url('admin/buku/gambar/'.$id_buku),'refresh');
+		}}
+		// End masuk database
+		$data = array(	'title' 	=> 'Tambah Gambar Buku: ' .$buku->judul_buku,
+						'buku'  	=> $buku,
+						'gambar'  	=> $gambar,
+					  	'isi'	  	=> 'admin/buku/gambar');
+		$this->load->view('admin/layout/wrapper', $data, FALSE);
+	}
+
 	// Tambah buku
 	public function tambah()
 	{
@@ -42,60 +114,33 @@ class Buku extends CI_Controller {
 			array('required' 	=> '%s harus diisi',
 					'is_unique' => '%s sudah ada. Buat kode baru!'));
 
-		// $valid->set_rules('penulis','Penulis','required',
-		// 	array('required' => '%s harus diisi'));
-
-		// $valid->set_rules('penerbit','Penerbit','required',
-		// 	array('required' => '%s harus diisi'));
-
-		// $valid->set_rules('harga','Harga','required',
-		// 	array('required' => '%s harus diisi'));
-
-		// $valid->set_rules('stock','Stock','required',
-		// 	array('required' => '%s harus diisi'));
-
-		// $valid->set_rules('berat','Berat','required',
-		// 	array('required' => '%s harus diisi'));
-
-		// $valid->set_rules('ukuran','Ukuran','required',
-		// 	array('required' => '%s harus diisi'));
-
-		// $valid->set_rules('keterangan','Keterangan','required',
-		// 	array('required' => '%s harus diisi'));
-
-		// $valid->set_rules('keywords','Keywords','required',
-		// 	array('required' => '%s harus diisi'));
-
-		// $valid->set_rules('status_buku','Status_buku','required',
-		// 	array('required' => '%s harus diisi'));
-
-
 		if($valid->run()) {
-			$config['upload_path']		= './assets/upload/image/thumbs/';
+			$config['upload_path']		= './assets/upload/image';
 			$config['allowed_types'] 	= 'gif|jpg|png|JPG|jpeg';
 			$config['max_size']  		= '5000';  // Dalam kb
 			$config['max_width']  		= '5000';
 			$config['max_height']  		= '5000';
 			
-		$this->load->library('upload', $config);
-			
-		if ( ! $this->upload->do_upload('gambar')){
-		// End validasi
+			$this->load->library('upload', $config);
+				
+			if ( ! $this->upload->do_upload('gambar')){
+			// End validasi
 
-		$data = array(	'title' 	=> 'Tambah Buku',
-						'kategori'  => $kategori,
-						'error'  	=> $this->upload->display_errors(),
-					  	'isi'	  	=> 'admin/buku/tambah');
+			$data = array(	'title' 	=> 'Tambah Buku',
+							'kategori'  => $kategori,
+							'error'  	=> $this->upload->display_errors(),
+						  	'isi'	  	=> 'admin/buku/tambah'
+						  );
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
-		// Masuk database
+			// Masuk database
 		}else{
 			$upload_gambar = array('upload_data' => $this->upload->data());
 
 			// Create thumbnail gambar
 			$config['image_library']	= 'gd2';
-			$config['source_image'] 	= './assets/upload/image/'.$upload_gambar['upload_data']['file_name'];
+			$config['source_image'] 	= './assets/upload/image'.$upload_gambar['upload_data']['file_name'];
 			// Lokasi folder thumbnail
-			$config['new_image']		= './assets/upload/image/thumbs/';
+			$config['new_image']		= './assets/upload/image/thumbs';
 			$config['create_thumb'] 	= TRUE;
 			$config['maintain_ratio'] 	= TRUE;
 			$config['width']         	= 250; // Pixel
@@ -105,7 +150,7 @@ class Buku extends CI_Controller {
 			$this->load->library('image_lib', $config);
 
 			$this->image_lib->resize();
-			// End thumbnail gambar
+			// End create thumbnail gambar
 
 			$i = $this->input;
 			// Slug Buku
@@ -161,32 +206,32 @@ class Buku extends CI_Controller {
 			// Check jika gambar diganti
 			if(!empty($_FILES['gambar']['name'])) {
 
-			$config['upload_path']		= './assets/upload/image/thumbs/';
+			$config['upload_path']		= './assets/upload/image';
 			$config['allowed_types'] 	= 'gif|jpg|png|JPG|jpeg';
 			$config['max_size']  		= '5000';  // Dalam kb
 			$config['max_width']  		= '5000';
 			$config['max_height']  		= '5000';
 			
-		$this->load->library('upload', $config);
-			
-		if ( ! $this->upload->do_upload('gambar')){
-		// End validasi
+			$this->load->library('upload', $config);
+				
+			if (! $this->upload->do_upload('gambar')){
+			// End validasi
 
-		$data = array(	'title' 	=> 'Edit Buku: ' .$buku->judul_buku,
-						'kategori'  => $kategori,
-						'buku' 		=> $buku, 
-						'error'  	=> $this->upload->display_errors(),
-					  	'isi'	  	=> 'admin/buku/edit');
-		$this->load->view('admin/layout/wrapper', $data, FALSE);
-		// Masuk database
+			$data = array(	'title' 	=> 'Edit Buku: ' .$buku->judul_buku,
+							'kategori'  => $kategori,
+							'buku' 		=> $buku, 
+							'error'  	=> $this->upload->display_errors(),
+						  	'isi'	  	=> 'admin/buku/edit');
+			$this->load->view('admin/layout/wrapper', $data, FALSE);
+			// Masuk database
 		}else{
 			$upload_gambar = array('upload_data' => $this->upload->data());
 
 			// Create thumbnail gambar
 			$config['image_library']	= 'gd2';
-			$config['source_image'] 	= './assets/upload/image/'.$upload_gambar['upload_data']['file_name'];
+			$config['source_image'] 	= './assets/upload/image'.$upload_gambar['upload_data']['file_name'];
 			// Lokasi folder thumbnail
-			$config['new_image']		= './assets/upload/image/thumbs/';
+			$config['new_image']		= './assets/upload/image/thumbs';
 			$config['create_thumb'] 	= TRUE;
 			$config['maintain_ratio'] 	= TRUE;
 			$config['width']         	= 250; // Pixel
@@ -196,7 +241,7 @@ class Buku extends CI_Controller {
 			$this->load->library('image_lib', $config);
 
 			$this->image_lib->resize();
-			// End thumbnail gambar
+			// End create thumbnail gambar
 
 			$i = $this->input;
 			// Slug Buku
@@ -265,6 +310,12 @@ class Buku extends CI_Controller {
 	// Delete buku
 	public function delete($id_buku)
 	{
+		// Hapus gambar
+		$gambar = $this->buku_model->detail_gambar($id_gambar);
+		unlink('./assets/upload/image/'.$gambar->gambar);
+		// unlink('./assets/upload/image/thumbs/'.$gambar->gambar);
+		// End hapus gambar
+
 		$data = array('id_buku' => $id_buku);
 		$this->buku_model->delete($data);
 		$this->session->set_flashdata('sukses', 'Data telah dihapus');

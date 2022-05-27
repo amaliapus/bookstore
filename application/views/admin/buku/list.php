@@ -34,7 +34,7 @@ if($this->session->flashdata('sukses')) {
 	<tr>
 		<td><?php echo $no ?></td>
 		<td>
-			<img src="<?php echo base_url('assets/upload/image/thumbs/' .$buku->gambar) ?>" class="img img-responsive img-thumbnail" width="60">
+			<img src="<?php echo base_url('assets/upload/image/' .$buku->gambar) ?>" class="img img-responsive img-thumbnail" width="60">
 		</td>
 		<td><?php echo $buku->judul_buku ?></td>
 		<td><?php echo $buku->penulis ?></td>
@@ -44,9 +44,11 @@ if($this->session->flashdata('sukses')) {
 		<td><?php echo $buku->stock ?></td>
 		<td><?php echo $buku->status_buku ?></td>
 		<td>
+			<a href="<?php echo base_url('admin/buku/gambar/'.$buku->id_buku) ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i>Gambar</a>
+
 			<a href="<?php echo base_url('admin/buku/edit/'.$buku->id_buku) ?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i>Edit</a>
 
-			<a href="<?php echo base_url('admin/buku/delete/'.$buku->id_buku) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="fa fa-trash-o"></i>Hapus</a>
+			<?php include('delete.php') ?>
 		</td>
 	</tr>
 		<?php $no++; } ?>
