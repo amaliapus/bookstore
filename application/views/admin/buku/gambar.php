@@ -10,7 +10,7 @@ if(isset($error)) {
 echo validation_errors('<div class="alert alert-warning">', '</div>');
 
 // Form open pakai MULTIPART untuk form yang ada upload GAMBAR
-echo form_open_multipart(base_url('admin/buku/tambah'), ' class="form-horizontal"');
+echo form_open_multipart(base_url('admin/buku/gambar/' .$buku->id_buku), ' class="form-horizontal"');
  ?>
 
 <div class="form-group">
@@ -60,7 +60,16 @@ if($this->session->flashdata('sukses')) {
     </tr>
   </thead>
   <tbody>
-    <?php $no=1; foreach($gambar as $gambar){ ?>
+    <tr>
+      <td>1</td>
+      <td>
+        <img src="<?php echo base_url('assets/upload/image/' .$buku->gambar) ?>" class="img img-responsive img-thumbnail" width="60">
+      </td>
+      <td><?php echo $buku->judul_buku ?></td>
+      <td>
+      </td>
+  </tr>
+    <?php $no=2; foreach($gambar as $gambar){ ?>
   <tr>
     <td><?php echo $no ?></td>
     <td>
@@ -69,7 +78,7 @@ if($this->session->flashdata('sukses')) {
     <td><?php echo $gambar->judul_gambar ?></td>
     <td>
 
-      <a href="<?php echo base_url('admin/buku/delete_gambar/'.$buku->id_buku. '/'.$gambar->id_gambar) ?>" class="btn btn-danger btn-xs"><i onclick="return confirm('Yakin ingin menghapus gambar ini?')" class="fa fa-trash-o"></i>Hapus</a>
+      <a href="<?php echo base_url('admin/buku/delete_gambar/'.$buku->id_buku.'/'.$gambar->id_gambar) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Yakin ingin menghapus gambar ini?')"><i class="fa fa-trash-o"></i>Hapus</a>
 
     </td>
   </tr>

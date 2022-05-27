@@ -321,6 +321,21 @@ class Buku extends CI_Controller {
 		$this->session->set_flashdata('sukses', 'Data telah dihapus');
 		redirect(base_url('admin/buku'),'refresh');
 	}
+
+	// Delete gambar buku
+	public function delete_gambar($id_buku,$id_gambar)
+	{
+		// Hapus gambar
+		$gambar = $this->buku_model->detail_gambar($id_gambar);
+		unlink('./assets/upload/image/'.$gambar->gambar);
+		// unlink('./assets/upload/image/thumbs/'.$gambar->gambar);
+		// End hapus gambar
+
+		$data = array('id_gambar' => $id_gambar);
+		$this->buku_model->delete_gambar($data);
+		$this->session->set_flashdata('sukses', 'Data gambar telah dihapus');
+		redirect(base_url('admin/buku/gambar/' .$id_buku),'refresh');
+	}
 }
 
 /* End of file Buku.php */

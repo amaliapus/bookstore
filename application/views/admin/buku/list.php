@@ -44,9 +44,9 @@ if($this->session->flashdata('sukses')) {
 		<td><?php echo $buku->stock ?></td>
 		<td><?php echo $buku->status_buku ?></td>
 		<td>
-			<a href="<?php echo base_url('admin/buku/gambar/'.$buku->id_buku) ?>" class="btn btn-success btn-xs"><i class="fa fa-edit"></i>Gambar</a>
+			<a href="<?php echo base_url('admin/buku/gambar/'.$buku->id_buku) ?>" class="btn btn-success btn-xs"><i class="fa fa-image"></i> Gambar (<?php echo $buku->total_gambar ?>)</a>
 
-			<a href="<?php echo base_url('admin/buku/edit/'.$buku->id_buku) ?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i>Edit</a>
+			<a href="<?php echo base_url('admin/buku/edit/'.$buku->id_buku) ?>" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Edit</a>
 
 			<?php include('delete.php') ?>
 		</td>
