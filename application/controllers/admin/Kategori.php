@@ -55,7 +55,7 @@ class Kategori extends CI_Controller {
 			$this->session->set_flashdata('sukses', 'Data telah ditambah');
 			redirect(base_url('admin/kategori'),'refresh');
 		}
-		// End database
+		// End masuk database
 	}
 
 
