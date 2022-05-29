@@ -52,7 +52,7 @@
           <ul class="treeview-menu">
             <li><a href="<?php echo base_url('admin/konfigurasi') ?>"><i class="fa fa-home"></i> Konfigurasi Umum</a></li>
             <li><a href="<?php echo base_url('admin/konfigurasi/logo') ?>"><i class="fa fa-image"></i> Konfigurasi Logo</a></li>
-            <li><a href="<?php echo base_url('admin/konfigurasi/icon') ?>"><i class="fa fa-home"></i> Konfigurasi Icon</a></li>
+            <li><a href="<?php echo base_url('admin/konfigurasi/icon') ?>"><i class="fa fa-asterisk"></i> Konfigurasi Icon</a></li>
           </ul>
         </li>
         
