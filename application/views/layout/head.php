@@ -1,3 +1,8 @@
+<?php
+// Loading konfigurasi website
+$site 	= $this->konfigurasi_model->listing();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +10,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/template/images/icons/favicon.png"/>
-<!--===============================================================================================-->
+<!-- ICON DIAMBIL DARI KONFIGURASI WEBSITE -->
+	<link rel="icon" type="image/png" href="<?php echo base_url('assets/upload/image/'.$site->icon) ?>"/>
+
+	<!-- SEO GOOGLE -->
+	<meta name="keywords" content="<?php echo $site->keywords ?>">
+	<meta name="description" content="<?php echo $title ?>, <?php echo $site->deskripsi ?>">
+
+
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/template/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/template/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
