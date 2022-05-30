@@ -1,3 +1,9 @@
+<?php 
+// Load data konfigurasi website
+$site 			 = $this->konfigurasi_model->listing();
+$nav_buku_footer = $this->konfigurasi_model->nav_buku();
+?>
+
 <!-- Footer -->
 	<footer class="bg6 p-t-45 p-b-43 p-l-45 p-r-45">
 		<div class="flex-w p-b-90">
@@ -8,15 +14,14 @@
 
 				<div>
 					<p class="s-text7 w-size27">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						Any questions? Let us know in store at <?php echo nl2br($site->alamat) ?>
+						<br><i class="fa fa-envelope"></i> <?php echo $site->email ?>
+						<br><i class="fa fa-phone"></i> <?php echo $site->telepon ?>
 					</p>
 
 					<div class="flex-m p-t-30">
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-pinterest-p"></a>
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-snapchat-ghost"></a>
-						<a href="#" class="fs-18 color1 p-r-20 fa fa-youtube-play"></a>
+						<a href="<?php echo $site->facebook ?>" class="fs-18 color1 p-r-20 fa fa-facebook"></a>
+						<a href="<?php echo $site->instagram ?>" class="fs-18 color1 p-r-20 fa fa-instagram"></a>
 					</div>
 				</div>
 			</div>
@@ -27,29 +32,13 @@
 				</h4>
 
 				<ul>
+					<?php foreach($nav_buku_footer as $nav_buku_footer) { ?>
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Men
+						<a href="<?php echo base_url('buku/kategori/' .$nav_buku_footer->slug_kategori) ?>" class="s-text7">
+							<?php echo $nav_buku_footer->nama_kategori ?>
 						</a>
 					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Women
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Dresses
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Sunglasses
-						</a>
-					</li>
+				<?php } ?>
 				</ul>
 			</div>
 

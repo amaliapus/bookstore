@@ -23,6 +23,21 @@ class Konfigurasi_model extends CI_Model {
 		$this->db->update('konfigurasi', $data);
 	}
 
+	// Load menu kategori buku
+	public function nav_buku()
+	{
+		$this->db->select('buku.*,
+							kategori.nama_kategori,
+							kategori.slug_kategori');
+		$this->db->from('buku');
+		// JOIN
+		$this->db->join('kategori', 'kategori.id_kategori = buku.id_kategori', 'left');
+		// END JOIN
+		$this->db->group_by('buku.id_kategori');
+		$this->db->order_by('kategori.urutan', 'ASC');
+		$query = $this->db->get();
+		return $query->result();
+	}
 
 }
 

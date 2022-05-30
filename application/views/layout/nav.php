@@ -1,19 +1,33 @@
+<?php 
+// AMBIL DATA MENU DARI KONFIGURASI
+$nav_buku			= $this->konfigurasi_model->nav_buku();
+$nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
+?>
+
 <div class="wrap_header">
 	<!-- Logo -->
 	<a href="index.html" class="logo">
-		<img src="<?php echo base_url() ?>assets/template/images/icons/logo.png" alt="<?php echo $site->namaweb ?> | <?php echo $site->tagline ?>">
+		<img src="<?php echo base_url('assets/upload/image/'. $site->logo) ?>" alt="<?php echo $site->namaweb ?> | <?php echo $site->tagline ?>">
 	</a>
 
 	<!-- Menu -->
 	<div class="wrap_menu">
 		<nav class="menu">
 			<ul class="main_menu">
+				<!-- HOME -->
 				<li>
-					<a href="index.html">Home</a>
+					<a href="<?php echo base_url() ?>">Home</a>
+				</li>
+
+				<!-- MENU BUKU DAN KATEGORI -->
+				<li>
+					<a href="<?php echo base_url('buku') ?>">Books </a>
 					<ul class="sub_menu">
-						<li><a href="index.html">Homepage V1</a></li>
-						<li><a href="home-02.html">Homepage V2</a></li>
-						<li><a href="home-03.html">Homepage V3</a></li>
+						<?php foreach($nav_buku as $nav_buku) { ?>
+						<li><a href="<?php echo base_url('buku/kategori/' .$nav_buku->slug_kategori) ?>">
+							<?php echo $nav_buku->nama_kategori ?>
+						</a></li>
+					<?php } ?>
 					</ul>
 				</li>
 
@@ -21,24 +35,8 @@
 					<a href="product.html">Shop</a>
 				</li>
 
-				<li class="sale-noti">
-					<a href="product.html">Sale</a>
-				</li>
-
 				<li>
-					<a href="cart.html">Features</a>
-				</li>
-
-				<li>
-					<a href="blog.html">Blog</a>
-				</li>
-
-				<li>
-					<a href="about.html">About</a>
-				</li>
-
-				<li>
-					<a href="contact.html">Contact</a>
+					<a href="<?php echo base_url('kontak') ?>">Contact</a>
 				</li>
 			</ul>
 		</nav>
@@ -243,20 +241,20 @@
 	<ul class="main-menu">
 		<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
 			<span class="topbar-child1">
-				Free shipping for standard order over $100
+				<?php echo $site->alamat ?>
 			</span>
 		</li>
 
 		<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
 			<div class="topbar-child2-mobile">
 				<span class="topbar-email">
-					fashe@example.com
+					<?php echo $site->email ?>
 				</span>
 
 				<div class="topbar-language rs1-select2">
 					<select class="selection-1" name="time">
-						<option>USD</option>
-						<option>EUR</option>
+						<option><?php echo $site->telepon ?></option>
+						<option><?php echo $site->email ?></option>
 					</select>
 				</div>
 			</div>
@@ -264,26 +262,27 @@
 
 		<li class="item-topbar-mobile p-l-10">
 			<div class="topbar-social-mobile">
-				<a href="#" class="topbar-social-item fa fa-facebook"></a>
-				<a href="#" class="topbar-social-item fa fa-instagram"></a>
-				<a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-				<a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
-				<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
+				<a href="<?php echo $site->facebook ?>" class="topbar-social-item fa fa-facebook"></a>
+				<a href="<?php echo $site->instagram ?>" class="topbar-social-item fa fa-instagram"></a>
 			</div>
 		</li>
 
+		<!-- MENU MOBILE HOMEPAGE -->
 		<li class="item-menu-mobile">
-			<a href="index.html">Home</a>
-			<ul class="sub-menu">
-				<li><a href="index.html">Homepage V1</a></li>
-				<li><a href="home-02.html">Homepage V2</a></li>
-				<li><a href="home-03.html">Homepage V3</a></li>
-			</ul>
-			<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
+			<a href="<?php echo base_url() ?>">Home</a>
 		</li>
 
+		<!-- MENU MOBILE PRODUCT -->
 		<li class="item-menu-mobile">
-			<a href="product.html">Shop</a>
+			<a href="<?php echo base_url('buku') ?>">Books </a>
+			<ul class="sub-menu">
+				<?php foreach($nav_buku_mobile as $nav_buku_mobile) { ?>
+					<li><a href="<?php echo base_url('buku/kategori/' .$nav_buku_mobile->slug_kategori) ?>">
+						<?php echo $nav_buku_mobile->nama_kategori ?>
+					</a></li>
+				<?php } ?>
+			</ul>
+			<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
 		</li>
 
 		<li class="item-menu-mobile">
@@ -291,19 +290,11 @@
 		</li>
 
 		<li class="item-menu-mobile">
-			<a href="cart.html">Features</a>
-		</li>
-
-		<li class="item-menu-mobile">
-			<a href="blog.html">Blog</a>
-		</li>
-
-		<li class="item-menu-mobile">
 			<a href="about.html">About</a>
 		</li>
 
 		<li class="item-menu-mobile">
-			<a href="contact.html">Contact</a>
+			<a href="<?php echo base_url('kontak') ?>">Contact</a>
 		</li>
 	</ul>
 </nav>
