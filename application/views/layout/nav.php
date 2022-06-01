@@ -53,7 +53,7 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 		<div class="header-wrapicon2">
 			<?php
 			// Check data belanja ada atau tidak
-			$cart_check = $this->cart->contents();
+			$keranjang = $this->cart->contents();
 
 			?>
 			<img src="<?php echo base_url() ?>assets/template/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
@@ -62,11 +62,25 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 			<!-- Header cart noti -->
 			<div class="header-cart header-dropdown">
 				<ul class="header-cart-wrapitem">
+
 					<?php  
 					// Kalau tidak ada data belanja
-					if(empty($cart_check)) { ?>
+					if(empty($keranjang)) { 
+					?>
 
-					<?php }else{ ?>
+					<li class="header-cart-item">
+						<p class="alert alert-success">Shopping Cart is Empty</p>
+					</li>
+
+					<?php
+					 // Kalau ada
+					}else{ 
+					// Tampilkan data belanja
+						foreach($keranjang as $keranjang) {
+
+
+					?>
+
 					<li class="header-cart-item">
 						<div class="header-cart-item-img">
 							<img src="<?php echo base_url() ?>assets/template/images/item-cart-01.jpg" alt="IMG">
@@ -74,14 +88,19 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 
 						<div class="header-cart-item-txt">
 							<a href="#" class="header-cart-item-name">
-								White Shirt With Pleat Detail Back
+								<?php echo $keranjang['name'] ?>
 							</a>
 
 							<span class="header-cart-item-info">
-								1 x $19.00
+								<?php echo $keranjang['qty'] ?> x <?php echo $keranjang['price'] ?>
 							</span>
 						</div>
 					</li>
+					<?php  
+						} // Tutup foreach keranjang
+					} // Tutup if
+					?>
+
 				</ul>
 
 				<div class="header-cart-total">
@@ -127,12 +146,35 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 		<span class="linedivide2"></span>
 
 		<div class="header-wrapicon2">
+			<?php
+			// Check data belanja ada atau tidak
+			$keranjang = $this->cart->contents();
+			?>
+			
 			<img src="<?php echo base_url() ?>assets/template/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 			<span class="header-icons-noti">0</span>
 
 			<!-- Header cart noti -->
 			<div class="header-cart header-dropdown">
 				<ul class="header-cart-wrapitem">
+
+					<?php  
+					// Kalau tidak ada data belanja
+					if(empty($keranjang)) { 
+					?>
+
+					<li class="header-cart-item">
+						<p class="alert alert-success">Shopping Cart is Empty</p>
+					</li>
+
+					<?php
+					 // Kalau ada
+					}else{ 
+					// Tampilkan data belanja
+						foreach($keranjang as $keranjang) {
+
+					?>
+
 					<li class="header-cart-item">
 						<div class="header-cart-item-img">
 							<img src="<?php echo base_url() ?>assets/template/images/item-cart-01.jpg" alt="IMG">
@@ -140,46 +182,19 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 
 						<div class="header-cart-item-txt">
 							<a href="#" class="header-cart-item-name">
-								White Shirt With Pleat Detail Back
+								<?php echo $keranjang['name'] ?>
 							</a>
 
 							<span class="header-cart-item-info">
-								1 x $19.00
+								<?php echo $keranjang['qty'] ?> x <?php echo $keranjang['price'] ?>
 							</span>
 						</div>
 					</li>
-
-					<li class="header-cart-item">
-						<div class="header-cart-item-img">
-							<img src="<?php echo base_url() ?>assets/template/images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt">
-							<a href="#" class="header-cart-item-name">
-								Converse All Star Hi Black Canvas
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item">
-						<div class="header-cart-item-img">
-							<img src="<?php echo base_url() ?>assets/template/images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt">
-							<a href="#" class="header-cart-item-name">
-								Nixon Porter Leather Watch In Tan
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
-							</span>
-						</div>
-					</li>
+					<?php  
+						} // Tutup foreach keranjang
+					} // Tutup if
+					?>
+					
 				</ul>
 
 				<div class="header-cart-total">
