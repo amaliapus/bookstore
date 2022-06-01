@@ -57,7 +57,7 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 
 			?>
 			<img src="<?php echo base_url() ?>assets/template/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-			<span class="header-icons-noti">0</span>
+			<span class="header-icons-noti"><?php echo count($keranjang) ?></span>
 
 			<!-- Header cart noti -->
 			<div class="header-cart header-dropdown">
@@ -75,9 +75,10 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 					<?php
 					 // Kalau ada
 					}else{ 
+					// Total belanja
+						$total_belanja = 'Rp '.number_format($this->cart->total(),'0',',','.');
 					// Tampilkan data belanja
 						foreach($keranjang as $keranjang) {
-
 
 					?>
 
@@ -92,7 +93,8 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 							</a>
 
 							<span class="header-cart-item-info">
-								<?php echo $keranjang['qty'] ?> x <?php echo $keranjang['price'] ?>
+								<?php echo $keranjang['qty'] ?> x  <?php echo number_format($keranjang['price'],'0',',','.') ?> = Rp <?php echo number_format($keranjang['subtotal'],'0',',','.')
+								?>
 							</span>
 						</div>
 					</li>
@@ -104,20 +106,20 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 				</ul>
 
 				<div class="header-cart-total">
-					Total: $75.00
+					Total: <?php echo $total_belanja ?>
 				</div>
 
 				<div class="header-cart-buttons">
 					<div class="header-cart-wrapbtn">
 						<!-- Button -->
-						<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+						<a href="<?php echo base_url('belanja/keranjang') ?>l" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 							View Cart
 						</a>
 					</div>
 
 					<div class="header-cart-wrapbtn">
 						<!-- Button -->
-						<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+						<a href="<?php echo base_url('belanja/checkout') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 							Check Out
 						</a>
 					</div>
@@ -152,7 +154,7 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 			?>
 			
 			<img src="<?php echo base_url() ?>assets/template/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-			<span class="header-icons-noti">0</span>
+			<span class="header-icons-noti"><?php echo count($keranjang) ?></span>
 
 			<!-- Header cart noti -->
 			<div class="header-cart header-dropdown">
@@ -170,6 +172,8 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 					<?php
 					 // Kalau ada
 					}else{ 
+					// Total belanja
+						$total_belanja = 'Rp '.number_format($this->cart->total(),'0',',','.');
 					// Tampilkan data belanja
 						foreach($keranjang as $keranjang) {
 
@@ -186,7 +190,9 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 							</a>
 
 							<span class="header-cart-item-info">
-								<?php echo $keranjang['qty'] ?> x <?php echo $keranjang['price'] ?>
+								<?php echo $keranjang['qty'] ?> x  <?php echo number_format($keranjang['price'],'0',',','.') ?> = Rp <?php echo number_format($keranjang['subtotal'],'0',',','.')
+								?>
+
 							</span>
 						</div>
 					</li>
@@ -194,24 +200,24 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 						} // Tutup foreach keranjang
 					} // Tutup if
 					?>
-					
+
 				</ul>
 
 				<div class="header-cart-total">
-					Total: $75.00
+					Total: <?php echo $total_belanja ?>
 				</div>
 
 				<div class="header-cart-buttons">
 					<div class="header-cart-wrapbtn">
 						<!-- Button -->
-						<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+						<a href="<?php echo base_url('belanja/keranjang') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 							View Cart
 						</a>
 					</div>
 
 					<div class="header-cart-wrapbtn">
 						<!-- Button -->
-						<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+						<a href="<?php echo base_url('belanja/checkout') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 							Check Out
 						</a>
 					</div>
