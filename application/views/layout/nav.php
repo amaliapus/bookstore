@@ -79,16 +79,18 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 						$total_belanja = 'Rp '.number_format($this->cart->total(),'0',',','.');
 					// Tampilkan data belanja
 						foreach($keranjang as $keranjang) {
-
+							$id_buku	= $keranjang['id'];
+							// Ambil data produk
+							$bukunya	= $this->buku_model->detail($id_buku);
 					?>
 
 					<li class="header-cart-item">
 						<div class="header-cart-item-img">
-							<img src="<?php echo base_url() ?>assets/template/images/item-cart-01.jpg" alt="IMG">
+							<img src="<?php echo base_url('assets/upload/image/' .$bukunya->gambar) ?>" alt="<?php echo $keranjang['name']?>">
 						</div>
 
 						<div class="header-cart-item-txt">
-							<a href="#" class="header-cart-item-name">
+							<a href="<?php echo base_url('buku/detail/' .$bukunya->slug_buku ) ?>" class="header-cart-item-name">
 								<?php echo $keranjang['name'] ?>
 							</a>
 
@@ -112,7 +114,7 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 				<div class="header-cart-buttons">
 					<div class="header-cart-wrapbtn">
 						<!-- Button -->
-						<a href="<?php echo base_url('belanja/keranjang') ?>l" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+						<a href="<?php echo base_url('belanja') ?>l" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 							View Cart
 						</a>
 					</div>
@@ -150,11 +152,11 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 		<div class="header-wrapicon2">
 			<?php
 			// Check data belanja ada atau tidak
-			$keranjang = $this->cart->contents();
+			$keranjang_mobile = $this->cart->contents();
 			?>
 			
 			<img src="<?php echo base_url() ?>assets/template/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-			<span class="header-icons-noti"><?php echo count($keranjang) ?></span>
+			<span class="header-icons-noti"><?php echo count($keranjang_mobile) ?></span>
 
 			<!-- Header cart noti -->
 			<div class="header-cart header-dropdown">
@@ -162,7 +164,7 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 
 					<?php  
 					// Kalau tidak ada data belanja
-					if(empty($keranjang)) { 
+					if(empty($keranjang_mobile)) { 
 					?>
 
 					<li class="header-cart-item">
@@ -175,22 +177,24 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 					// Total belanja
 						$total_belanja = 'Rp '.number_format($this->cart->total(),'0',',','.');
 					// Tampilkan data belanja
-						foreach($keranjang as $keranjang) {
-
+						foreach($keranjang_mobile as $keranjang_mobile) {
+							$id_buku	= $keranjang_mobile['id'];
+							// Ambil data produk
+							$bukunya	= $this->buku_model->detail($id_buku);
 					?>
 
 					<li class="header-cart-item">
 						<div class="header-cart-item-img">
-							<img src="<?php echo base_url() ?>assets/template/images/item-cart-01.jpg" alt="IMG">
+							<img src="<?php echo base_url('assets/upload/image/' .$bukunya->gambar) ?>" alt="<?php echo $keranjang_mobile['name']?>">
 						</div>
 
 						<div class="header-cart-item-txt">
-							<a href="#" class="header-cart-item-name">
-								<?php echo $keranjang['name'] ?>
+							<a href="<?php echo base_url('buku/detail/' .$bukunya->slug_buku ) ?>" class="header-cart-item-name">
+								<?php echo $keranjang_mobile['name'] ?>
 							</a>
 
 							<span class="header-cart-item-info">
-								<?php echo $keranjang['qty'] ?> x  <?php echo number_format($keranjang['price'],'0',',','.') ?> = Rp <?php echo number_format($keranjang['subtotal'],'0',',','.')
+								<?php echo $keranjang_mobile['qty'] ?> x  <?php echo number_format($keranjang_mobile['price'],'0',',','.') ?> = Rp <?php echo number_format($keranjang_mobile['subtotal'],'0',',','.')
 								?>
 
 							</span>
@@ -210,7 +214,7 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 				<div class="header-cart-buttons">
 					<div class="header-cart-wrapbtn">
 						<!-- Button -->
-						<a href="<?php echo base_url('belanja/keranjang') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+						<a href="<?php echo base_url('belanja') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 							View Cart
 						</a>
 					</div>
