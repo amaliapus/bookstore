@@ -51,12 +51,22 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 		<span class="linedivide1"></span>
 
 		<div class="header-wrapicon2">
+			<?php
+			// Check data belanja ada atau tidak
+			$cart_check = $this->cart->contents();
+
+			?>
 			<img src="<?php echo base_url() ?>assets/template/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 			<span class="header-icons-noti">0</span>
 
 			<!-- Header cart noti -->
 			<div class="header-cart header-dropdown">
 				<ul class="header-cart-wrapitem">
+					<?php  
+					// Kalau tidak ada data belanja
+					if(empty($cart_check)) { ?>
+
+					<?php }else{ ?>
 					<li class="header-cart-item">
 						<div class="header-cart-item-img">
 							<img src="<?php echo base_url() ?>assets/template/images/item-cart-01.jpg" alt="IMG">
@@ -69,38 +79,6 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 
 							<span class="header-cart-item-info">
 								1 x $19.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item">
-						<div class="header-cart-item-img">
-							<img src="<?php echo base_url() ?>assets/template/images/item-cart-02.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt">
-							<a href="#" class="header-cart-item-name">
-								Converse All Star Hi Black Canvas
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $39.00
-							</span>
-						</div>
-					</li>
-
-					<li class="header-cart-item">
-						<div class="header-cart-item-img">
-							<img src="<?php echo base_url() ?>assets/template/images/item-cart-03.jpg" alt="IMG">
-						</div>
-
-						<div class="header-cart-item-txt">
-							<a href="#" class="header-cart-item-name">
-								Nixon Porter Leather Watch In Tan
-							</a>
-
-							<span class="header-cart-item-info">
-								1 x $17.00
 							</span>
 						</div>
 					</li>
