@@ -102,7 +102,7 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 					</li>
 					<?php  
 						} // Tutup foreach keranjang
-					} // Tutup if
+					
 					?>
 
 				</ul>
@@ -114,7 +114,7 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 				<div class="header-cart-buttons">
 					<div class="header-cart-wrapbtn">
 						<!-- Button -->
-						<a href="<?php echo base_url('belanja') ?>l" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+						<a href="<?php echo base_url('belanja') ?>" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
 							View Cart
 						</a>
 					</div>
@@ -126,6 +126,9 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 						</a>
 					</div>
 				</div>
+				<?php  
+				} // Tutup if
+				?>
 			</div>
 		</div>
 	</div>
@@ -201,8 +204,7 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 						</div>
 					</li>
 					<?php  
-						} // Tutup foreach keranjang
-					} // Tutup if
+					} // Tutup foreach keranjang
 					?>
 
 				</ul>
@@ -226,6 +228,9 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 						</a>
 					</div>
 				</div>
+				<?php  
+				} // Tutup if
+				?>
 			</div>
 		</div>
 	</div>

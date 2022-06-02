@@ -15,9 +15,9 @@ class Belanja extends CI_Controller {
 	// Halaman belanja
 	public function index()
 	{
-		$keranjang 	- $this->cart->contents();
+		$keranjang 	= $this->cart->contents();
 
-		$data 	= array(	'title'		=> 'keranjang Belanja',
+		$data 	= array(	'title'		=> 'Shopping Cart',
 							'keranjang' => $keranjang,
 							'isi' 		=> 'belanja/list' 
 						);
