@@ -139,7 +139,7 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 <div class="wrap_header_mobile">
 <!-- Logo moblie -->
 <a href="index.html" class="logo-mobile">
-	<img src="<?php echo base_url() ?>assets/template/images/icons/logo.png" alt="IMG-LOGO">
+	<img src="<?php echo base_url('assets/upload/image/'. $site->logo) ?>" alt="<?php echo $site->namaweb ?> | <?php echo $site->tagline ?>">
 </a>
 
 <!-- Button show menu -->

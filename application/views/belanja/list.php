@@ -27,7 +27,7 @@ Cart
 
 		<?php 
 		// Total belanja
-		$total_belanja = 'Rp '.number_format($this->cart->total(),'0',',','.');
+		$total_belanja = 'IDR '.number_format($this->cart->total(),'0',',','.');
 		// Looping data keranjang belanja
 		foreach($keranjang as $keranjang) {
 			// Ambil data produk
@@ -42,7 +42,7 @@ Cart
 				</div>
 			</td>
 			<td class="column-2"><?php echo $keranjang['name'] ?></td>
-			<td class="column-3">Rp <?php echo number_format($keranjang['price'],'0',',','.') ?></td>
+			<td class="column-3">IDR <?php echo number_format($keranjang['price'],'0',',','.') ?></td>
 			<td class="column-4">
 				<div class="flex-w bo5 of-hidden w-size17">
 					<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
@@ -56,7 +56,7 @@ Cart
 					</button>
 				</div>
 			</td>
-			<td class="column-5"> Rp <?php echo number_format($keranjang['subtotal'],'0',',','.')?>
+			<td class="column-5"> IDR <?php echo number_format($keranjang['subtotal'],'0',',','.')?>
 			</td>
 		</tr>
 		<?php 
@@ -94,7 +94,7 @@ Cart
 	</span>
 
 	<span class="m-text21 w-size20 w-full-sm">
-		Rp <?php echo number_format($keranjang['subtotal'],'0',',','.') ?>
+		IDR <?php echo number_format($keranjang['subtotal'],'0',',','.') ?>
 	</span>
 </div>
 
