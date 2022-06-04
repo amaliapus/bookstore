@@ -53,6 +53,29 @@ class Buku_model extends CI_Model {
 		return $query->result();
 	}
 
+	// Read buku
+	public function read($slug_buku)
+	{
+		$this->db->select('buku.*,
+							user.nama,
+							kategori.id_kategori,
+							kategori.nama_kategori,
+							kategori.slug_kategori,
+							COUNT(gambar.id_gambar) AS total_gambar');
+		$this->db->from('buku');
+		// JOIN
+		$this->db->join('user', 'user.id_user = buku.id_user', 'left');
+		$this->db->join('kategori', 'kategori.id_kategori = buku.id_kategori', 'left');
+		$this->db->join('gambar', 'gambar.id_buku = buku.id_buku', 'left');
+		// END JOIN
+		$this->db->where('buku.status_buku', 'Publish');
+		$this->db->where('buku.slug_buku', $slug_buku);
+		$this->db->group_by('buku.id_buku');
+		$this->db->order_by('id_buku', 'desc');
+		$query = $this->db->get();
+		return $query->row();
+	}
+
 	// Listing buku 
 	public function buku($limit,$start)
 	{

@@ -56,6 +56,17 @@
 			<div class="row">
 				<?php foreach($buku as $buku) { ?>
 				<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+					<?php 
+					//  Form untuk memproses belanjaan
+					echo form_open(base_url('belanja/add')); 
+					// Element yang dibawa
+					echo form_hidden('id', $buku->id_buku);
+					echo form_hidden('qty',1);
+					echo form_hidden('price', $buku->harga);
+					echo form_hidden('name', $buku->judul_buku);
+					// Element redirect
+					echo form_hidden('redirect_page', str_replace('index.php/','',current_url()));
+					?>
 					<!-- Block2 -->
 					<div class="block2">
 						<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
@@ -69,7 +80,7 @@
 
 								<div class="block2-btn-addcart w-size1 trans-0-4">
 									<!-- Button -->
-									<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+									<button type="submit" value="submit" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 										Add to Cart
 									</button>
 								</div>
@@ -77,7 +88,7 @@
 						</div>
 
 						<div class="block2-txt p-t-20">
-							<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+							<a href="<?php echo base_url('buku/detail/'.$buku->slug_buku) ?>" class="block2-name dis-block s-text3 p-b-5">
 								<?php echo $buku->judul_buku ?>
 							</a>
 
@@ -86,6 +97,10 @@
 							</span>
 						</div>
 					</div>
+					<?php 
+					// Closing form
+					echo form_close();
+					?>
 				</div>
 			<?php } ?>
 

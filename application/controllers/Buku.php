@@ -21,10 +21,10 @@ class Buku extends CI_Controller {
 		// Paginasi start
 		$this->load->library('pagination');
 		
-		$config['base_url'] 		= base_url().'buku/index/';
+		$config['base_url'] 		= base_url().'/buku/index/';
 		$config['total_rows'] 		= $total->total;
 		$config['use_page_number']	= TRUE;
-		$config['per_page'] 		= 15;
+		$config['per_page'] 		= 18;
 		$config['uri_segment'] 		= 3;
 		$config['num_links'] 		= 5;
 		$config['full_tag_open']	= '<ul class="pagination">';
@@ -59,6 +59,23 @@ class Buku extends CI_Controller {
 							'isi'				=> 'buku/list'
 						);
 		$this->load->view('layout/wrapper', $data, FALSE);
+	}
+
+	// Detail buku
+	public function detail($slug_buku)
+	{
+		$site 		= $this->konfigurasi_model->listing();
+		$buku 		= $this->buku_model->read($slug_buku);
+		$id_buku 	= $buku->id_buku;
+		$gambar 	= $this->buku_model->gambar($id_buku);
+
+		$data 	= array(	'title'				=> $buku->judul_buku,
+							'site' 				=> $site,
+							'buku' 				=> $buku,
+							'isi'				=> 'buku/detail'
+						);
+		$this->load->view('layout/wrapper', $data, FALSE);
+
 	}
 
 }
