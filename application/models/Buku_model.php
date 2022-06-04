@@ -48,12 +48,12 @@ class Buku_model extends CI_Model {
 		// $this->db->where('buku.status_buku', 'Publish');
 		$this->db->group_by('buku.id_buku');
 		$this->db->order_by('id_buku', 'desc');
-		$this->db->limit(25);
+		$this->db->limit(33);
 		$query = $this->db->get();
 		return $query->result();
 	}
 
-	// Listing all buku home
+	// Listing buku 
 	public function buku($limit,$start)
 	{
 		$this->db->select('buku.*,
@@ -68,7 +68,7 @@ class Buku_model extends CI_Model {
 		$this->db->join('kategori', 'kategori.id_kategori = buku.id_kategori', 'left');
 		$this->db->join('gambar', 'gambar.id_buku = buku.id_buku', 'left');
 		// END JOIN
-		// $this->db->where('buku.status_buku', 'Publish');
+		$this->db->where('buku.sb', 'Publish');
 		$this->db->group_by('buku.id_buku');
 		$this->db->order_by('id_buku', 'desc');
 		$this->db->limit($limit,$start);
@@ -81,7 +81,7 @@ class Buku_model extends CI_Model {
 	{
 		$this->db->select('COUNT(*) AS total');
 		$this->db->from('buku');
-		$this->db->where('status_buku', 'Publish');
+		$this->db->where('sb', 'Publish');
 		$query = $this->db->get();
 		return $query->row();
 	}

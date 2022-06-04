@@ -24,7 +24,7 @@ class Buku extends CI_Controller {
 		$config['base_url'] 		= base_url().'buku/index/';
 		$config['total_rows'] 		= $total->total;
 		$config['use_page_number']	= TRUE;
-		$config['per_page'] 		= 12;
+		$config['per_page'] 		= 15;
 		$config['uri_segment'] 		= 3;
 		$config['num_links'] 		= 5;
 		$config['full_tag_open']	= '<ul class="pagination">';
@@ -50,7 +50,7 @@ class Buku extends CI_Controller {
 		$page  		= ($this->uri->segment(3)) ? ($this->uri->segment(3)-1) * $config['per_page']:0;
 		$buku  		= $this->buku_model->buku($config['per_page'],$page);
 		// Paginasi end
-
+ 
 		$data 	= array(	'title'				=> 'Buku '.$site->namaweb,
 							'site' 				=> $site,
 							'listing_kategori'	=> $listing_kategori,
