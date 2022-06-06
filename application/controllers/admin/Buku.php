@@ -172,6 +172,7 @@ class Buku extends CI_Controller {
 							'berat' 			=> $i->post('berat'),
 							'ukuran' 			=> $i->post('ukuran'),
 							'status_buku' 		=> $i->post('status_buku'),
+							'sb'	 			=> $i->post('sb'),
 							'tgl_post' 			=> date('Y-m-d H:i:s')
 									);
 
@@ -263,7 +264,8 @@ class Buku extends CI_Controller {
 							'gambar' 			=> $upload_gambar['upload_data']['file_name'],
 							'berat' 			=> $i->post('berat'),
 							'ukuran' 			=> $i->post('ukuran'),
-							'status_buku' 		=> $i->post('status_buku')
+							'status_buku' 		=> $i->post('status_buku'),
+							'sb' 				=> $i->post('sb')
 									);
 
 			$this->buku_model->edit($data);
@@ -291,7 +293,8 @@ class Buku extends CI_Controller {
 							// 'gambar' 			=> $upload_gambar['upload_data']['file_name'],
 							'berat' 			=> $i->post('berat'),
 							'ukuran' 			=> $i->post('ukuran'),
-							'status_buku' 		=> $i->post('status_buku')
+							'status_buku' 		=> $i->post('status_buku'),
+							'sb' 				=> $i->post('sb')
 									);
 
 			$this->buku_model->edit($data);

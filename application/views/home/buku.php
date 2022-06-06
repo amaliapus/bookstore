@@ -10,6 +10,7 @@
 <!-- Slide2 -->
 <div class="wrap-slick2">
 <div class="slick2">
+	
 <?php foreach($buku as $buku){ ?>
 <div class="item-slick2 p-l-25 p-r-25">
 

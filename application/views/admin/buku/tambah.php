@@ -115,6 +115,17 @@ echo form_open_multipart(base_url('admin/buku/tambah'), ' class="form-horizontal
   </div>
 </div>
 
+<div class="form-group">
+  <label class="col-md-2 control-label">Status Buku</label>
+  <div class="col-md-10">
+    <select name="sb" class="form_control">
+      <option value="Publish">Publish</option>
+      <option value="UnPublish">UnPublish</option>
+      option
+    </select>
+  </div>
+</div>
+
 
 <div class="form-group">
   <label class="col-md-2 control-label"></label>

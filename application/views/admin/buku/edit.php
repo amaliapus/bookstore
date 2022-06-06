@@ -100,9 +100,20 @@ echo form_open_multipart(base_url('admin/buku/edit/' .$buku->id_buku),' class="f
   <label class="col-md-2 control-label">Status Buku</label>
   <div class="col-md-10">
     <select name="status_buku" class="form_control">
-      <option value="In Stock">In Stock</option>
+      <option value="In Stock"<?php if($buku->status_buku="In Stock") { echo "selected"; } ?>>In Stock</option>
       <option value="Out of Stock">Out of Stock</option>
-      <option value="Stock at Publisher Warehouse" <?php if($buku->status_buku="Stock at Publisher House") { echo "selected"; } ?> >Stock at Publisher Warehouse</option>
+      <option value="Stock at Publisher Warehouse">Stock at Publisher Warehouse</option>
+      option
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-2 control-label">Izin Publish</label>
+  <div class="col-md-10">
+    <select name="sb" class="form_control">
+      <option value="Publish"<?php if($buku->sb="Publish") { echo "selected"; } ?>>Publish</option>
+      <option value="UnPublish">UnPublish</option>
       option
     </select>
   </div>
