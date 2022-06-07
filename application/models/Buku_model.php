@@ -187,7 +187,7 @@ class Buku_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('gambar');
 		$this->db->where('id_gambar', $id_gambar);
-		$this->db->order_by('id_gambar', 'desc');
+		$this->db->order_by('id_gambar', 'asc');
 		$query = $this->db->get();
 		return $query->row();
 	}
@@ -198,7 +198,7 @@ class Buku_model extends CI_Model {
 		$this->db->select('*');
 		$this->db->from('gambar');
 		$this->db->where('id_buku', $id_buku);
-		$this->db->order_by('id_gambar', 'desc');
+		$this->db->order_by('id_gambar', 'asc');
 		$query = $this->db->get();
 		return $query->result();
 	}

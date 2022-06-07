@@ -23,6 +23,7 @@ Cart
 			<th class="column-3">Price</th>
 			<th class="column-4 p-l-70">Quantity</th>
 			<th class="column-5">Subtotal</th>
+			<!-- <th class="column-6">Action</th> -->
 		</tr>
 
 		<?php 
@@ -58,6 +59,10 @@ Cart
 			</td>
 			<td class="column-5"> IDR <?php echo number_format($keranjang['subtotal'],'0',',','.')?>
 			</td>
+			<!-- <td>
+				<button type="submit" name="update" ></button>
+			</td> -->
+
 		</tr>
 		<?php 
 		// End looping keranjang belanja

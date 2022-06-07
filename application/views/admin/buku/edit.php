@@ -39,7 +39,7 @@ echo form_open_multipart(base_url('admin/buku/edit/' .$buku->id_buku),' class="f
 <div class="col-md-5">
   <select name="id_kategori" class="form-control">
     <?php foreach($kategori as $kategori) { ?>
-       <option value= "<?php echo $kategori->nama_kategori ?>" <?php if($buku->id_kategori==$kategori->id_kategori) { echo "selected"; } ?>>
+       <option value= "<?php echo $kategori->id_kategori ?>" <?php if($buku->id_kategori==$kategori->id_kategori) { echo "selected"; } ?>>
           <?php echo $kategori->nama_kategori ?>
        </option>
     <?php } ?>
