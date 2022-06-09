@@ -36,7 +36,7 @@ $nav_buku_mobile	= $this->konfigurasi_model->nav_buku();
 				</li>
 
 				<li>
-					<a href="<?php echo base_url('kontak') ?>">Contact</a>
+					<a href="<?php echo base_url('about') ?>">About</a>
 				</li>
 			</ul>
 		</nav>
